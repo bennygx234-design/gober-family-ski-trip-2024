@@ -134,10 +134,12 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.15);
         }
 
-        /* Auto aspect ratio - no cutoff */
+        /* Controlled size - no huge images */
         .gallery-item img {
             width: 100%;
-            height: auto;
+            height: 280px;
+            object-fit: cover;
+            object-position: center top;
             display: block;
             transition: transform 0.5s ease;
         }
