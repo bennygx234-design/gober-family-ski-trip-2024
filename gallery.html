@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery | Gober Family Ski Trip 2024</title>
+    <title>Photo Gallery | Gober Family Ski Trip 2025</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,21 +13,25 @@
         }
 
         :root {
-            --snow-white: #f8fafc;
+            --snow-white: #ffffff;
+            --off-white: #f8f9fa;
+            --light-gray: #e9ecef;
             --mountain-blue: #1e3a5f;
-            --sky-blue: #87ceeb;
+            --sky-blue: #4a90c2;
+            --light-blue: #e8f4fc;
             --pine-green: #2d5a3d;
             --sunset-orange: #e07c4c;
             --golden-hour: #f4a460;
-            --deep-navy: #0f172a;
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(180deg, var(--deep-navy) 0%, var(--mountain-blue) 100%);
-            color: var(--snow-white);
+            background: var(--off-white);
+            color: var(--text-dark);
             min-height: 100vh;
         }
 
@@ -46,10 +50,10 @@
         .snowflake {
             position: absolute;
             top: -10px;
-            color: white;
-            text-shadow: 0 0 5px rgba(255,255,255,0.8);
+            color: var(--sky-blue);
+            text-shadow: 0 0 5px rgba(74,144,194,0.5);
             animation: fall linear infinite;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
         @keyframes fall {
@@ -59,10 +63,11 @@
 
         /* Header */
         header {
+            background: linear-gradient(135deg, var(--mountain-blue), var(--sky-blue));
             padding: 2rem;
             text-align: center;
             position: relative;
-            z-index: 10;
+            color: white;
         }
 
         .back-btn {
@@ -70,8 +75,8 @@
             left: 2rem;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255,255,255,0.1);
-            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
             color: white;
             padding: 0.8rem 1.5rem;
             border-radius: 50px;
@@ -93,14 +98,10 @@
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
             margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, var(--snow-white), var(--sky-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         header p {
-            opacity: 0.8;
+            opacity: 0.9;
             font-size: 1.1rem;
         }
 
@@ -122,24 +123,27 @@
             border-radius: 20px;
             overflow: hidden;
             cursor: pointer;
-            aspect-ratio: 4/3;
             transition: all 0.4s ease;
+            background: var(--snow-white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid var(--light-gray);
         }
 
         .gallery-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
         }
 
+        /* Auto aspect ratio - no cutoff */
         .gallery-item img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             transition: transform 0.5s ease;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.03);
         }
 
         .gallery-overlay {
@@ -161,11 +165,13 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.2rem;
             margin-bottom: 0.3rem;
+            color: white;
         }
 
         .gallery-overlay p {
             opacity: 0.8;
             font-size: 0.9rem;
+            color: white;
         }
 
         .photo-number {
@@ -182,7 +188,7 @@
             justify-content: center;
             font-weight: 700;
             font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         /* Lightbox */
@@ -260,6 +266,7 @@
         .lightbox-caption {
             text-align: center;
             margin-top: 1.5rem;
+            color: white;
         }
 
         .lightbox-caption h4 {
@@ -274,9 +281,11 @@
 
         /* Footer */
         footer {
+            background: var(--mountain-blue);
             padding: 3rem 2rem;
             text-align: center;
             margin-top: 2rem;
+            color: white;
         }
 
         .footer-logo {
@@ -296,7 +305,7 @@
         .footer-logo .logo-text { font-size: 0.6rem; font-weight: 700; }
 
         footer p {
-            opacity: 0.6;
+            opacity: 0.8;
             font-size: 0.9rem;
         }
 
@@ -311,7 +320,7 @@
                 margin-bottom: 1.5rem;
             }
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: 1fr;
             }
             .lightbox-nav { display: none; }
         }
@@ -522,15 +531,15 @@
             <span class="logo-icon">&#9978;</span>
             <span class="logo-text">GOBER</span>
         </div>
-        <p>Gober Family Ski Trip 2024 | Steamboat Springs & Vail, Colorado</p>
+        <p>Gober Family Ski Trip 2025 | Steamboat Springs & Vail, Colorado</p>
     </footer>
 
     <script>
-        // Snowfall
+        // Snowfall - subtle on white background
         function createSnowflakes() {
             const container = document.getElementById('snowflakes');
             const symbols = ['&#10052;', '&#10053;', '*'];
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 25; i++) {
                 const snowflake = document.createElement('div');
                 snowflake.className = 'snowflake';
                 snowflake.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];

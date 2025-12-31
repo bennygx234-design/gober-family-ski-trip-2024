@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gober Family Ski Trip 2024 | Colorado Adventure</title>
+    <title>Gober Family Ski Trip 2025 | Colorado Adventure</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,23 +13,26 @@
         }
 
         :root {
-            --snow-white: #f8fafc;
+            --snow-white: #ffffff;
+            --off-white: #f8f9fa;
+            --light-gray: #e9ecef;
             --mountain-blue: #1e3a5f;
-            --sky-blue: #87ceeb;
+            --sky-blue: #4a90c2;
+            --light-blue: #e8f4fc;
             --pine-green: #2d5a3d;
             --sunset-orange: #e07c4c;
             --golden-hour: #f4a460;
             --deep-navy: #0f172a;
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(180deg, var(--deep-navy) 0%, var(--mountain-blue) 100%);
-            color: var(--snow-white);
+            background: var(--snow-white);
+            color: var(--text-dark);
             overflow-x: hidden;
         }
 
@@ -52,7 +55,7 @@
             font-size: 1em;
             text-shadow: 0 0 5px rgba(255,255,255,0.8);
             animation: fall linear infinite;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         @keyframes fall {
@@ -69,71 +72,66 @@
             align-items: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--mountain-blue) 50%, var(--pine-green) 100%);
+            background: linear-gradient(180deg, #1a365d 0%, #2563eb 40%, #60a5fa 70%, #bfdbfe 90%, #ffffff 100%);
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        /* Realistic Mountain SVGs */
+        .mountain-container {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 200px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.95' d='M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
-            background-size: cover;
+            height: 45%;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
 
-        .mountains {
+        .mountain-steamboat {
             position: absolute;
-            bottom: 150px;
-            left: 0;
-            right: 0;
-            height: 300px;
-            z-index: 1;
-        }
-
-        .mountain {
-            position: absolute;
+            left: -5%;
             bottom: 0;
-            width: 0;
-            height: 0;
-            border-style: solid;
+            width: 55%;
+            height: 100%;
         }
 
-        .mountain-1 {
-            left: 5%;
-            border-width: 0 150px 250px 150px;
-            border-color: transparent transparent #3d6b8a transparent;
-            animation: mountainFloat 8s ease-in-out infinite;
+        .mountain-vail {
+            position: absolute;
+            right: -5%;
+            bottom: 0;
+            width: 55%;
+            height: 100%;
         }
 
-        .mountain-2 {
-            left: 25%;
-            border-width: 0 200px 300px 200px;
-            border-color: transparent transparent #2d5a7a transparent;
-            animation: mountainFloat 10s ease-in-out infinite 1s;
+        .mountain-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 -5px 20px rgba(0,0,0,0.1));
         }
 
-        .mountain-3 {
-            right: 20%;
-            border-width: 0 180px 280px 180px;
-            border-color: transparent transparent #4a7a9a transparent;
-            animation: mountainFloat 9s ease-in-out infinite 0.5s;
+        /* Snow caps on mountains */
+        .snow-cap {
+            fill: #ffffff;
+        }
+        .mountain-body {
+            fill: #4a5568;
+        }
+        .mountain-shadow {
+            fill: #2d3748;
+        }
+        .mountain-detail {
+            fill: #718096;
+        }
+        .tree-line {
+            fill: #276749;
+        }
+        .tree-detail {
+            fill: #22543d;
         }
 
-        .mountain-4 {
-            right: 0%;
-            border-width: 0 160px 220px 160px;
-            border-color: transparent transparent #3d6b8a transparent;
-            animation: mountainFloat 7s ease-in-out infinite 1.5s;
-        }
-
-        @keyframes mountainFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
+        /* Logo Section */
         .logo-container {
             z-index: 10;
             margin-bottom: 2rem;
@@ -149,7 +147,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 -5px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), inset 0 -5px 20px rgba(0,0,0,0.2);
             position: relative;
             animation: pulse 3s ease-in-out infinite;
         }
@@ -162,17 +160,17 @@
             right: -5px;
             bottom: -5px;
             border-radius: 50%;
-            border: 3px solid var(--snow-white);
-            opacity: 0.5;
+            border: 3px solid rgba(255,255,255,0.5);
         }
 
-        .logo-icon { font-size: 3rem; margin-bottom: 0.3rem; }
+        .logo-icon { font-size: 3rem; margin-bottom: 0.3rem; color: white; }
         .logo-text {
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
+            color: white;
         }
 
         @keyframes pulse {
@@ -188,6 +186,7 @@
         .hero-content {
             z-index: 10;
             animation: fadeInUp 1.5s ease-out 0.5s both;
+            color: white;
         }
 
         @keyframes fadeInUp {
@@ -199,11 +198,8 @@
             font-family: 'Playfair Display', serif;
             font-size: 4rem;
             margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            background: linear-gradient(90deg, var(--snow-white), var(--sky-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            color: white;
         }
 
         .hero h2 {
@@ -212,12 +208,14 @@
             margin-bottom: 0.5rem;
             letter-spacing: 4px;
             text-transform: uppercase;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
         }
 
         .hero p {
             font-size: 1.2rem;
-            opacity: 0.9;
+            opacity: 0.95;
             margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
         .location-badges {
@@ -229,19 +227,20 @@
         }
 
         .badge {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.2);
             backdrop-filter: blur(10px);
             padding: 0.8rem 1.5rem;
             border-radius: 50px;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.4);
             display: flex;
             align-items: center;
             gap: 0.5rem;
             transition: all 0.3s ease;
+            color: white;
         }
 
         .badge:hover {
-            background: rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.3);
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
@@ -284,7 +283,7 @@
 
         .scroll-indicator {
             position: absolute;
-            bottom: 220px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -301,7 +300,7 @@
             display: block;
             width: 30px;
             height: 50px;
-            border: 2px solid rgba(255,255,255,0.5);
+            border: 2px solid rgba(255,255,255,0.6);
             border-radius: 25px;
             position: relative;
         }
@@ -324,6 +323,7 @@
             100% { opacity: 0; top: 30px; }
         }
 
+        /* Section Styles */
         section {
             padding: 6rem 2rem;
             position: relative;
@@ -337,6 +337,7 @@
             position: relative;
             display: inline-block;
             width: 100%;
+            color: var(--text-dark);
         }
 
         .section-title::after {
@@ -354,15 +355,15 @@
         .section-subtitle {
             text-align: center;
             font-size: 1.2rem;
-            opacity: 0.8;
+            color: var(--text-muted);
             margin-bottom: 4rem;
             margin-top: 1.5rem;
         }
 
-        /* About Section */
+        /* About Section - White Theme */
         .about-section {
             background: var(--snow-white);
-            color: var(--deep-navy);
+            color: var(--text-dark);
         }
 
         .about-grid {
@@ -374,14 +375,15 @@
         }
 
         .about-card {
-            background: white;
+            background: var(--off-white);
             padding: 2.5rem;
             border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             text-align: center;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--light-gray);
         }
 
         .about-card::before {
@@ -391,12 +393,12 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, var(--mountain-blue), var(--pine-green));
+            background: linear-gradient(90deg, var(--sky-blue), var(--pine-green));
         }
 
         .about-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.12);
         }
 
         .card-icon {
@@ -419,13 +421,13 @@
         }
 
         .about-card p {
-            color: #666;
+            color: var(--text-muted);
             line-height: 1.8;
         }
 
-        /* Gallery Section */
+        /* Gallery Section - White Theme */
         .gallery-section {
-            background: linear-gradient(180deg, var(--mountain-blue) 0%, var(--deep-navy) 100%);
+            background: var(--off-white);
         }
 
         .gallery-container {
@@ -435,39 +437,40 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 1.5rem;
             padding: 1rem;
         }
 
         .gallery-item {
             position: relative;
-            height: 300px;
             border-radius: 20px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.4s ease;
+            background: var(--light-gray);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
 
         .gallery-item.featured {
             grid-column: span 2;
-            height: 400px;
         }
 
+        /* Auto aspect ratio - no cutoff */
         .gallery-item img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             transition: transform 0.5s ease;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .gallery-overlay {
@@ -476,7 +479,7 @@
             left: 0;
             right: 0;
             padding: 2rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
             transform: translateY(100%);
             transition: transform 0.4s ease;
         }
@@ -489,11 +492,13 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
+            color: white;
         }
 
         .gallery-overlay p {
             opacity: 0.8;
             font-size: 0.9rem;
+            color: white;
         }
 
         .view-all-btn {
@@ -503,8 +508,8 @@
         }
 
         .btn-gallery {
-            background: transparent;
-            border: 2px solid var(--sunset-orange);
+            background: var(--mountain-blue);
+            border: none;
             color: white;
             padding: 1rem 2.5rem;
             border-radius: 50px;
@@ -524,10 +529,10 @@
             box-shadow: 0 10px 30px rgba(224, 124, 76, 0.3);
         }
 
-        /* Destinations Section */
+        /* Destinations Section - White Theme */
         .destinations-section {
             background: var(--snow-white);
-            color: var(--deep-navy);
+            color: var(--text-dark);
         }
 
         .destination-cards {
@@ -539,44 +544,34 @@
         }
 
         .destination-card {
-            background: white;
+            background: var(--off-white);
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
             transition: all 0.4s ease;
+            border: 1px solid var(--light-gray);
         }
 
         .destination-card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.12);
         }
 
         .destination-image {
-            height: 280px;
             position: relative;
             overflow: hidden;
         }
 
+        /* Auto aspect ratio for destination images */
         .destination-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             transition: transform 0.5s ease;
         }
 
         .destination-card:hover .destination-image img {
-            transform: scale(1.1);
-        }
-
-        .destination-image::after {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: white;
-            border-radius: 50% 50% 0 0;
+            transform: scale(1.05);
         }
 
         .destination-content {
@@ -592,7 +587,7 @@
         }
 
         .destination-content p {
-            color: #666;
+            color: var(--text-muted);
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
@@ -602,7 +597,7 @@
             justify-content: center;
             gap: 2rem;
             padding-top: 1.5rem;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--light-gray);
         }
 
         .stat { text-align: center; }
@@ -613,14 +608,14 @@
         }
         .stat-label {
             font-size: 0.85rem;
-            color: #999;
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* Highlights Section */
+        /* Highlights Section - Subtle blue accent */
         .highlights-section {
-            background: linear-gradient(180deg, var(--deep-navy) 0%, var(--mountain-blue) 100%);
+            background: linear-gradient(180deg, var(--light-blue) 0%, var(--snow-white) 100%);
         }
 
         .timeline {
@@ -655,13 +650,13 @@
         }
 
         .timeline-content {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
+            background: var(--snow-white);
             padding: 2rem;
             border-radius: 20px;
             max-width: 400px;
             margin-right: 2rem;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid var(--light-gray);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             transition: all 0.4s ease;
         }
 
@@ -671,8 +666,8 @@
         }
 
         .timeline-content:hover {
-            background: rgba(255,255,255,0.15);
             transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
         }
 
         .timeline-icon {
@@ -694,18 +689,20 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
             margin-bottom: 0.5rem;
+            color: var(--text-dark);
         }
 
         .timeline-content p {
-            opacity: 0.8;
+            color: var(--text-muted);
             line-height: 1.7;
         }
 
         /* Footer */
         footer {
-            background: var(--deep-navy);
+            background: var(--mountain-blue);
             padding: 4rem 2rem;
             text-align: center;
+            color: white;
         }
 
         .footer-logo {
@@ -722,7 +719,7 @@
         }
 
         .footer-logo .logo-icon { font-size: 2rem; }
-        .footer-logo .logo-text { font-size: 0.7rem; }
+        .footer-logo .logo-text { font-size: 0.7rem; font-weight: 700; }
 
         footer h3 {
             font-family: 'Playfair Display', serif;
@@ -731,13 +728,13 @@
         }
 
         footer p {
-            opacity: 0.7;
+            opacity: 0.8;
             margin-bottom: 2rem;
         }
 
         .footer-text {
             font-size: 0.9rem;
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         .social-links {
@@ -792,14 +789,13 @@
                 margin-right: 0;
             }
             .timeline-icon { left: 20px; }
-            .gallery-item.featured {
-                grid-column: span 1;
-                height: 300px;
-            }
+            .gallery-item.featured { grid-column: span 1; }
+            .gallery-grid { grid-template-columns: 1fr; }
             .destination-cards { grid-template-columns: 1fr; }
             .family-logo { width: 140px; height: 140px; }
             .logo-icon { font-size: 2.5rem; }
             .logo-text { font-size: 0.9rem; }
+            .mountain-steamboat, .mountain-vail { width: 70%; }
         }
     </style>
 </head>
@@ -808,11 +804,56 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="mountains">
-            <div class="mountain mountain-1"></div>
-            <div class="mountain mountain-2"></div>
-            <div class="mountain mountain-3"></div>
-            <div class="mountain mountain-4"></div>
+        <!-- Steamboat Mountain (Left) -->
+        <div class="mountain-steamboat">
+            <svg class="mountain-svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMax slice">
+                <!-- Back range / distant peaks -->
+                <path class="mountain-shadow" d="M-50,400 L50,280 L100,300 L150,250 L200,270 L250,220 L300,250 L350,200 L400,230 L450,180 L500,220 L550,190 L600,240 L650,200 L700,250 L750,220 L800,260 L850,400 Z"/>
+
+                <!-- Main Steamboat mountain body -->
+                <path class="mountain-body" d="M-50,400 L80,320 L130,340 L180,280 L230,310 L280,250 L330,280 L380,220 L420,200 L460,180 L500,200 L540,230 L580,210 L620,250 L660,230 L700,270 L740,250 L780,290 L850,400 Z"/>
+
+                <!-- Mountain ridges and detail -->
+                <path class="mountain-detail" d="M200,350 L250,300 L280,320 L320,290 L350,310 L380,270 L410,250 L440,230 L470,250 L500,270 L530,250 L560,280 L590,260 L620,290 L650,270 L680,300 L710,280 L750,320 L780,350 L780,400 L200,400 Z"/>
+
+                <!-- Snow caps -->
+                <path class="snow-cap" d="M380,220 L400,205 L420,200 L440,205 L460,180 L475,175 L490,185 L500,200 L485,210 L470,205 L455,215 L440,210 L420,220 L400,215 Z"/>
+                <path class="snow-cap" d="M280,250 L300,235 L320,245 L340,230 L355,240 L340,255 L320,250 L300,260 Z"/>
+                <path class="snow-cap" d="M540,230 L560,215 L580,210 L595,220 L580,235 L560,230 Z"/>
+
+                <!-- Tree line -->
+                <path class="tree-line" d="M-50,400 L100,380 L120,370 L140,380 L160,365 L180,375 L200,360 L220,370 L240,355 L260,365 L280,350 L300,360 L320,345 L340,355 L360,340 L380,350 L400,335 L420,345 L440,330 L460,340 L480,325 L500,340 L520,330 L540,345 L560,335 L580,350 L600,340 L620,355 L640,345 L660,360 L680,350 L700,365 L720,355 L740,370 L760,360 L780,375 L800,365 L850,400 Z"/>
+
+                <!-- Individual trees detail -->
+                <path class="tree-detail" d="M150,380 L155,365 L160,380 M200,375 L205,355 L210,375 M250,370 L257,350 L264,370 M300,365 L308,342 L316,365 M350,360 L358,338 L366,360 M400,355 L410,330 L420,355 M450,350 L460,325 L470,350 M500,355 L510,330 L520,355 M550,360 L558,340 L566,360 M600,365 L608,345 L616,365 M650,370 L658,350 L666,370"/>
+            </svg>
+        </div>
+
+        <!-- Vail Mountain (Right) -->
+        <div class="mountain-vail">
+            <svg class="mountain-svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMax slice">
+                <!-- Back bowls / distant terrain -->
+                <path class="mountain-shadow" d="M-50,400 L0,300 L50,320 L100,270 L150,290 L200,240 L250,260 L300,210 L350,240 L400,190 L450,220 L500,180 L550,210 L600,170 L650,200 L700,230 L750,200 L800,250 L850,400 Z"/>
+
+                <!-- Main Vail mountain body - iconic front side -->
+                <path class="mountain-body" d="M-50,400 L30,330 L80,350 L130,300 L180,330 L230,270 L280,300 L330,250 L370,230 L410,210 L450,190 L490,210 L530,240 L570,220 L610,250 L650,230 L690,260 L730,240 L770,280 L850,400 Z"/>
+
+                <!-- Ridge details -->
+                <path class="mountain-detail" d="M150,370 L200,330 L240,350 L280,310 L320,340 L360,300 L400,270 L440,250 L480,270 L520,300 L560,280 L600,310 L640,290 L680,320 L720,300 L760,340 L800,370 L800,400 L150,400 Z"/>
+
+                <!-- Snow caps - Vail's distinctive peaks -->
+                <path class="snow-cap" d="M410,210 L430,195 L450,190 L470,195 L490,210 L475,220 L455,215 L435,220 Z"/>
+                <path class="snow-cap" d="M330,250 L350,235 L370,230 L385,240 L370,255 L350,250 Z"/>
+                <path class="snow-cap" d="M570,220 L590,205 L610,200 L625,210 L610,225 L590,220 Z"/>
+                <path class="snow-cap" d="M230,270 L250,255 L270,260 L255,275 Z"/>
+                <path class="snow-cap" d="M690,260 L705,250 L720,255 L710,270 Z"/>
+
+                <!-- Tree line -->
+                <path class="tree-line" d="M-50,400 L0,385 L30,370 L60,380 L90,365 L120,375 L150,358 L180,368 L210,352 L240,362 L270,345 L300,358 L330,342 L360,355 L390,340 L420,352 L450,338 L480,350 L510,340 L540,355 L570,345 L600,360 L630,350 L660,365 L690,355 L720,370 L750,360 L780,375 L850,400 Z"/>
+
+                <!-- Tree details -->
+                <path class="tree-detail" d="M80,378 L88,358 L96,378 M140,372 L148,350 L156,372 M200,365 L210,342 L220,365 M260,358 L270,335 L280,358 M320,352 L332,328 L344,352 M380,348 L392,322 L404,348 M440,352 L452,330 L464,352 M500,358 L510,338 L520,358 M560,362 L570,342 L580,362 M620,368 L630,348 L640,368 M680,372 L690,352 L700,372"/>
+            </svg>
         </div>
 
         <div class="logo-container">
@@ -823,7 +864,7 @@
         </div>
 
         <div class="hero-content">
-            <h2>December 2024</h2>
+            <h2>January 2025</h2>
             <h1>Colorado Ski Adventure</h1>
             <p>Creating memories on the slopes of the Rocky Mountains</p>
 
@@ -856,7 +897,7 @@
     <!-- About Section -->
     <section class="about-section" id="about">
         <h2 class="section-title reveal">Our Adventure</h2>
-        <p class="section-subtitle reveal">A December to Remember in the Colorado Rockies</p>
+        <p class="section-subtitle reveal">A Winter to Remember in the Colorado Rockies</p>
 
         <div class="about-grid">
             <div class="about-card reveal">
@@ -1081,7 +1122,7 @@
             <span class="logo-icon">&#9978;</span>
             <span class="logo-text">GOBER</span>
         </div>
-        <h3>Gober Family Ski Trip 2024</h3>
+        <h3>Gober Family Ski Trip 2025</h3>
         <p>Steamboat Springs & Vail, Colorado</p>
 
         <div class="social-links">
@@ -1090,24 +1131,24 @@
             <a href="gallery.html" class="social-link">&#128444;</a>
         </div>
 
-        <p class="footer-text">Making Memories in the Mountains | December 2024</p>
+        <p class="footer-text">Making Memories in the Mountains | January 2025</p>
     </footer>
 
     <script>
         // Snowfall Effect
         function createSnowflakes() {
-            const snowflakesContainer = document.getElementById('snowflakes');
-            const snowflakeSymbols = ['&#10052;', '&#10053;', '&#10054;', '*'];
+            const container = document.getElementById('snowflakes');
+            const symbols = ['&#10052;', '&#10053;', '&#10054;', '*'];
             for (let i = 0; i < 50; i++) {
                 const snowflake = document.createElement('div');
                 snowflake.className = 'snowflake';
-                snowflake.innerHTML = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+                snowflake.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
                 snowflake.style.left = Math.random() * 100 + '%';
                 snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
                 snowflake.style.animationDelay = Math.random() * 10 + 's';
                 snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
                 snowflake.style.opacity = Math.random() * 0.6 + 0.4;
-                snowflakesContainer.appendChild(snowflake);
+                container.appendChild(snowflake);
             }
         }
         createSnowflakes();
@@ -1131,9 +1172,7 @@
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
