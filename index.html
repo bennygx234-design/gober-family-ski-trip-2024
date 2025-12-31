@@ -56,12 +56,8 @@
         }
 
         @keyframes fall {
-            0% {
-                transform: translateY(-10px) rotate(0deg);
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-            }
+            0% { transform: translateY(-10px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
         }
 
         /* Hero Section */
@@ -88,7 +84,6 @@
             background-size: cover;
         }
 
-        /* Mountain Silhouettes */
         .mountains {
             position: absolute;
             bottom: 150px;
@@ -139,7 +134,6 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* Logo Section */
         .logo-container {
             z-index: 10;
             margin-bottom: 2rem;
@@ -172,11 +166,7 @@
             opacity: 0.5;
         }
 
-        .logo-icon {
-            font-size: 3rem;
-            margin-bottom: 0.3rem;
-        }
-
+        .logo-icon { font-size: 3rem; margin-bottom: 0.3rem; }
         .logo-text {
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
@@ -191,14 +181,8 @@
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-content {
@@ -207,14 +191,8 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero h1 {
@@ -268,7 +246,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        /* Animated Button */
         .btn-explore {
             background: linear-gradient(135deg, var(--sunset-orange), var(--golden-hour));
             color: white;
@@ -299,17 +276,10 @@
             transition: left 0.5s ease;
         }
 
-        .btn-explore:hover::before {
-            left: 100%;
-        }
-
+        .btn-explore:hover::before { left: 100%; }
         .btn-explore:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 20px 60px rgba(224, 124, 76, 0.5);
-        }
-
-        .btn-explore:active {
-            transform: translateY(-2px) scale(1.02);
         }
 
         .scroll-indicator {
@@ -354,7 +324,6 @@
             100% { opacity: 0; top: 30px; }
         }
 
-        /* Section Styles */
         section {
             padding: 6rem 2rem;
             position: relative;
@@ -477,22 +446,11 @@
             border-radius: 20px;
             overflow: hidden;
             cursor: pointer;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            border: 2px dashed rgba(255,255,255,0.3);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             transition: all 0.4s ease;
-        }
-
-        .gallery-item.has-image {
-            border: none;
         }
 
         .gallery-item:hover {
             transform: scale(1.03);
-            border-color: var(--sunset-orange);
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
@@ -501,30 +459,6 @@
             height: 400px;
         }
 
-        .photo-placeholder {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .photo-placeholder-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.7;
-        }
-
-        .photo-placeholder p {
-            font-size: 1rem;
-            opacity: 0.7;
-        }
-
-        .photo-placeholder small {
-            display: block;
-            margin-top: 0.5rem;
-            opacity: 0.5;
-            font-size: 0.85rem;
-        }
-
-        /* When images are added */
         .gallery-item img {
             width: 100%;
             height: 100%;
@@ -562,6 +496,34 @@
             font-size: 0.9rem;
         }
 
+        .view-all-btn {
+            display: block;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn-gallery {
+            background: transparent;
+            border: 2px solid var(--sunset-orange);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gallery:hover {
+            background: var(--sunset-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(224, 124, 76, 0.3);
+        }
+
         /* Destinations Section */
         .destinations-section {
             background: var(--snow-white);
@@ -590,12 +552,7 @@
         }
 
         .destination-image {
-            height: 250px;
-            background: linear-gradient(135deg, var(--mountain-blue), var(--pine-green));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            height: 280px;
             position: relative;
             overflow: hidden;
         }
@@ -604,6 +561,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .destination-card:hover .destination-image img {
+            transform: scale(1.1);
         }
 
         .destination-image::after {
@@ -615,12 +577,6 @@
             height: 100px;
             background: white;
             border-radius: 50% 50% 0 0;
-        }
-
-        .destination-image .place-icon {
-            font-size: 5rem;
-            z-index: 1;
-            animation: float 4s ease-in-out infinite;
         }
 
         .destination-content {
@@ -649,16 +605,12 @@
             border-top: 1px solid #eee;
         }
 
-        .stat {
-            text-align: center;
-        }
-
+        .stat { text-align: center; }
         .stat-number {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--sunset-orange);
         }
-
         .stat-label {
             font-size: 0.85rem;
             color: #999;
@@ -769,13 +721,8 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
 
-        .footer-logo .logo-icon {
-            font-size: 2rem;
-        }
-
-        .footer-logo .logo-text {
-            font-size: 0.7rem;
-        }
+        .footer-logo .logo-icon { font-size: 2rem; }
+        .footer-logo .logo-text { font-size: 0.7rem; }
 
         footer h3 {
             font-family: 'Playfair Display', serif;
@@ -819,7 +766,6 @@
             transform: translateY(-5px);
         }
 
-        /* Scroll Reveal Animation */
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -831,67 +777,33 @@
             transform: translateY(0);
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero h2 {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(even) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero h2 { font-size: 1rem; }
+            .section-title { font-size: 2rem; }
+            .timeline::before { left: 20px; }
+            .timeline-item, .timeline-item:nth-child(even) {
                 padding-left: 60px;
                 padding-right: 0;
                 justify-content: flex-start;
             }
-
-            .timeline-content,
-            .timeline-item:nth-child(even) .timeline-content {
+            .timeline-content, .timeline-item:nth-child(even) .timeline-content {
                 margin-left: 0;
                 margin-right: 0;
             }
-
-            .timeline-icon {
-                left: 20px;
-            }
-
+            .timeline-icon { left: 20px; }
             .gallery-item.featured {
                 grid-column: span 1;
                 height: 300px;
             }
-
-            .destination-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .family-logo {
-                width: 140px;
-                height: 140px;
-            }
-
-            .logo-icon {
-                font-size: 2.5rem;
-            }
-
-            .logo-text {
-                font-size: 0.9rem;
-            }
+            .destination-cards { grid-template-columns: 1fr; }
+            .family-logo { width: 140px; height: 140px; }
+            .logo-icon { font-size: 2.5rem; }
+            .logo-text { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Snowfall Effect -->
     <div class="snowflakes" id="snowflakes"></div>
 
     <!-- Hero Section -->
@@ -967,222 +879,118 @@
         </div>
     </section>
 
-    <!-- ============================================================== -->
-    <!-- PHOTO GALLERY - ADD YOUR PHOTOS BELOW                          -->
-    <!-- ============================================================== -->
-    <!--
-    HOW TO ADD YOUR PHOTOS:
-
-    1. Upload your photos to a free image host:
-       - imgbb.com (recommended - no account needed)
-       - imgur.com
-       - postimages.org
-
-    2. Copy the DIRECT image link (ending in .jpg, .png, etc.)
-
-    3. Replace the placeholder sections below with your images
-
-    EXAMPLE - Change this:
-        <div class="photo-placeholder">
-            <div class="photo-placeholder-icon">&#128247;</div>
-            <p>Featured Family Photo</p>
-        </div>
-
-    TO this:
-        <img src="YOUR_IMAGE_URL_HERE.jpg" alt="Description">
-        <div class="gallery-overlay">
-            <h4>Your Title</h4>
-            <p>Your caption</p>
-        </div>
-    -->
-    <!-- ============================================================== -->
-
+    <!-- Gallery Section -->
     <section class="gallery-section" id="gallery">
         <h2 class="section-title reveal">Photo Gallery</h2>
         <p class="section-subtitle reveal">Captured Moments from Our Trip</p>
 
         <div class="gallery-container">
             <div class="gallery-grid">
-
-                <!-- PHOTO 1: Featured Family Photo (Large) -->
+                <!-- Featured Photo 1 -->
                 <div class="gallery-item featured reveal">
-                    <!-- REPLACE BELOW WITH YOUR IMAGE -->
-                    <div class="photo-placeholder">
-                        <div class="photo-placeholder-icon">&#128247;</div>
-                        <p>Featured Family Photo</p>
-                        <small>Add your best group shot here</small>
-                    </div>
-                    <!-- UNCOMMENT AND USE THIS FORMAT:
-                    <img src="PASTE_YOUR_IMAGE_URL_HERE" alt="Gober Family at Colorado">
+                    <img src="images/photo_13.jpg" alt="Gober Family in Colorado">
                     <div class="gallery-overlay">
                         <h4>The Gober Family</h4>
-                        <p>Colorado December 2024</p>
+                        <p>Together in the Colorado snow</p>
                     </div>
-                    -->
                 </div>
 
-                <!-- PHOTO 2: Skiing Action Shot -->
+                <!-- Photo 2 -->
                 <div class="gallery-item reveal">
-                    <!-- REPLACE BELOW WITH YOUR IMAGE -->
-                    <div class="photo-placeholder">
-                        <div class="photo-placeholder-icon">&#127935;</div>
-                        <p>Skiing Action Shot</p>
-                        <small>Steamboat or Vail slopes</small>
-                    </div>
-                    <!-- UNCOMMENT AND USE THIS FORMAT:
-                    <img src="PASTE_YOUR_IMAGE_URL_HERE" alt="Skiing">
+                    <img src="images/photo_01.jpg" alt="Family on the slopes">
                     <div class="gallery-overlay">
-                        <h4>Hitting the Slopes</h4>
-                        <p>Fresh powder day!</p>
+                        <h4>On the Slopes</h4>
+                        <p>Ready to hit the mountain</p>
                     </div>
-                    -->
                 </div>
 
-                <!-- PHOTO 3: Mountain Views -->
+                <!-- Photo 3 -->
                 <div class="gallery-item reveal">
-                    <!-- REPLACE BELOW WITH YOUR IMAGE -->
-                    <div class="photo-placeholder">
-                        <div class="photo-placeholder-icon">&#127956;</div>
-                        <p>Mountain Views</p>
-                        <small>Scenic mountain landscape</small>
-                    </div>
-                    <!-- UNCOMMENT AND USE THIS FORMAT:
-                    <img src="PASTE_YOUR_IMAGE_URL_HERE" alt="Mountain View">
+                    <img src="images/photo_02.jpg" alt="Chairlift selfie">
                     <div class="gallery-overlay">
-                        <h4>Rocky Mountain Views</h4>
-                        <p>Breathtaking scenery</p>
+                        <h4>Chairlift Selfie</h4>
+                        <p>Riding up the mountain</p>
                     </div>
-                    -->
                 </div>
 
-                <!-- PHOTO 4: Chairlift/Gondola -->
+                <!-- Photo 4 -->
                 <div class="gallery-item reveal">
-                    <!-- REPLACE BELOW WITH YOUR IMAGE -->
-                    <div class="photo-placeholder">
-                        <div class="photo-placeholder-icon">&#9978;</div>
-                        <p>Gondola/Lift Ride</p>
-                        <small>Chairlift moment</small>
-                    </div>
-                    <!-- UNCOMMENT AND USE THIS FORMAT:
-                    <img src="PASTE_YOUR_IMAGE_URL_HERE" alt="Chairlift">
+                    <img src="images/photo_06.jpg" alt="Snowboarding sisters">
                     <div class="gallery-overlay">
-                        <h4>Riding Up</h4>
-                        <p>Chairlift views</p>
+                        <h4>Snowboard Sisters</h4>
+                        <p>Learning to shred together</p>
                     </div>
-                    -->
                 </div>
 
-                <!-- PHOTO 5: Lodge & Dining -->
+                <!-- Photo 5 -->
                 <div class="gallery-item reveal">
-                    <!-- REPLACE BELOW WITH YOUR IMAGE -->
-                    <div class="photo-placeholder">
-                        <div class="photo-placeholder-icon">&#127837;</div>
-                        <p>Lodge & Dining</p>
-                        <small>Cozy indoor moments</small>
-                    </div>
-                    <!-- UNCOMMENT AND USE THIS FORMAT:
-                    <img src="PASTE_YOUR_IMAGE_URL_HERE" alt="Lodge">
+                    <img src="images/photo_10.jpg" alt="Gondola ride">
                     <div class="gallery-overlay">
-                        <h4>Cozy Evenings</h4>
-                        <p>Warming up after skiing</p>
+                        <h4>Gondola Views</h4>
+                        <p>Taking in the scenery</p>
                     </div>
-                    -->
                 </div>
 
-                <!-- PHOTO 6: Snow Day Fun (Large) -->
+                <!-- Featured Photo 2 -->
                 <div class="gallery-item featured reveal">
-                    <!-- REPLACE BELOW WITH YOUR IMAGE -->
-                    <div class="photo-placeholder">
-                        <div class="photo-placeholder-icon">&#10052;</div>
-                        <p>Snow Day Fun</p>
-                        <small>Playing in the powder</small>
-                    </div>
-                    <!-- UNCOMMENT AND USE THIS FORMAT:
-                    <img src="PASTE_YOUR_IMAGE_URL_HERE" alt="Snow Fun">
+                    <img src="images/photo_15.jpg" alt="Family group photo">
                     <div class="gallery-overlay">
-                        <h4>Snow Day!</h4>
-                        <p>Fun in the powder</p>
+                        <h4>Winter Wonderland</h4>
+                        <p>Snowy memories by the bridge</p>
                     </div>
-                    -->
                 </div>
 
-                <!-- PHOTO 7: Sunset Views -->
+                <!-- Photo 6 -->
                 <div class="gallery-item reveal">
-                    <!-- REPLACE BELOW WITH YOUR IMAGE -->
-                    <div class="photo-placeholder">
-                        <div class="photo-placeholder-icon">&#127748;</div>
-                        <p>Sunset Views</p>
-                        <small>Mountain sunset photo</small>
-                    </div>
-                    <!-- UNCOMMENT AND USE THIS FORMAT:
-                    <img src="PASTE_YOUR_IMAGE_URL_HERE" alt="Sunset">
+                    <img src="images/photo_11.jpg" alt="Family in gondola">
                     <div class="gallery-overlay">
-                        <h4>Mountain Sunset</h4>
-                        <p>Golden hour magic</p>
+                        <h4>Gondola Family</h4>
+                        <p>Up, up, and away!</p>
                     </div>
-                    -->
                 </div>
 
-                <!-- PHOTO 8: Snowboarding -->
+                <!-- Photo 7 -->
                 <div class="gallery-item reveal">
-                    <!-- REPLACE BELOW WITH YOUR IMAGE -->
-                    <div class="photo-placeholder">
-                        <div class="photo-placeholder-icon">&#129466;</div>
-                        <p>Snowboarding</p>
-                        <small>Shredding the slopes</small>
-                    </div>
-                    <!-- UNCOMMENT AND USE THIS FORMAT:
-                    <img src="PASTE_YOUR_IMAGE_URL_HERE" alt="Snowboarding">
+                    <img src="images/photo_05.jpg" alt="Snowboarding fun">
                     <div class="gallery-overlay">
-                        <h4>Shredding</h4>
-                        <p>Snowboard action</p>
+                        <h4>Learning to Board</h4>
+                        <p>First time on the slopes</p>
                     </div>
-                    -->
                 </div>
 
-                <!-- PHOTO 9: Fun Moments -->
+                <!-- Photo 8 -->
                 <div class="gallery-item reveal">
-                    <!-- REPLACE BELOW WITH YOUR IMAGE -->
-                    <div class="photo-placeholder">
-                        <div class="photo-placeholder-icon">&#127881;</div>
-                        <p>Fun Moments</p>
-                        <small>Candid family fun</small>
-                    </div>
-                    <!-- UNCOMMENT AND USE THIS FORMAT:
-                    <img src="PASTE_YOUR_IMAGE_URL_HERE" alt="Fun">
+                    <img src="images/photo_16.jpg" alt="Holiday decorations">
                     <div class="gallery-overlay">
-                        <h4>Making Memories</h4>
-                        <p>Candid moments</p>
+                        <h4>Holiday Spirit</h4>
+                        <p>Festive fun in Vail</p>
                     </div>
-                    -->
                 </div>
+            </div>
 
+            <div class="view-all-btn reveal">
+                <a href="gallery.html" class="btn-gallery">
+                    <span>View All 17 Photos</span>
+                    <span>&#8594;</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================== -->
-    <!-- DESTINATIONS - ADD YOUR PHOTOS BELOW                           -->
-    <!-- ============================================================== -->
-
+    <!-- Destinations Section -->
     <section class="destinations-section" id="destinations">
         <h2 class="section-title reveal">Our Destinations</h2>
         <p class="section-subtitle reveal">Two World-Class Colorado Resorts</p>
 
         <div class="destination-cards">
-
-            <!-- STEAMBOAT CARD -->
+            <!-- Steamboat Card -->
             <div class="destination-card reveal">
-                <div class="destination-image" style="background: linear-gradient(135deg, #1e4d6b, #2d7a9a);">
-                    <!-- ADD STEAMBOAT PHOTO: Replace the icon below with an <img> tag -->
-                    <span class="place-icon">&#127956;</span>
-                    <!-- UNCOMMENT TO ADD PHOTO:
-                    <img src="PASTE_STEAMBOAT_PHOTO_URL_HERE" alt="Steamboat Springs">
-                    -->
+                <div class="destination-image">
+                    <img src="images/photo_04.jpg" alt="Steamboat Springs - The Range">
                 </div>
                 <div class="destination-content">
                     <h3>Steamboat Springs</h3>
-                    <p>Known for its famous "Champagne Powder" and authentic Western charm. Steamboat offers incredible terrain variety and that classic Colorado ski town atmosphere.</p>
+                    <p>Known for its famous "Champagne Powder" and authentic Western charm. We enjoyed incredible skiing and delicious meals at The Range!</p>
                     <div class="destination-stats">
                         <div class="stat">
                             <div class="stat-number">165+</div>
@@ -1196,18 +1004,14 @@
                 </div>
             </div>
 
-            <!-- VAIL CARD -->
+            <!-- Vail Card -->
             <div class="destination-card reveal">
-                <div class="destination-image" style="background: linear-gradient(135deg, #2d5a3d, #4a8a5a);">
-                    <!-- ADD VAIL PHOTO: Replace the icon below with an <img> tag -->
-                    <span class="place-icon">&#9968;</span>
-                    <!-- UNCOMMENT TO ADD PHOTO:
-                    <img src="PASTE_VAIL_PHOTO_URL_HERE" alt="Vail">
-                    -->
+                <div class="destination-image">
+                    <img src="images/photo_09.jpg" alt="Vail Village">
                 </div>
                 <div class="destination-content">
                     <h3>Vail</h3>
-                    <p>One of the largest ski resorts in North America, featuring legendary Back Bowls and world-renowned terrain. A true bucket-list ski destination.</p>
+                    <p>One of the largest ski resorts in North America! We loved exploring the charming Vail Village and hitting the legendary slopes.</p>
                     <div class="destination-stats">
                         <div class="stat">
                             <div class="stat-number">195+</div>
@@ -1241,7 +1045,7 @@
                 <div class="timeline-icon">&#127935;</div>
                 <div class="timeline-content">
                     <h4>Steamboat Adventure</h4>
-                    <p>Experiencing the legendary Champagne Powder at Steamboat Springs. The snow was absolutely incredible!</p>
+                    <p>Experiencing the legendary Champagne Powder at Steamboat Springs. Amazing skiing at The Range and Sunshine Bowl!</p>
                 </div>
             </div>
 
@@ -1249,15 +1053,15 @@
                 <div class="timeline-icon">&#127968;</div>
                 <div class="timeline-content">
                     <h4>Cozy Lodge Evenings</h4>
-                    <p>Warming up by the fire after a day on the mountain, sharing stories and making memories together.</p>
+                    <p>Warming up at Highmark after a day on the mountain, sharing stories and enjoying delicious food together.</p>
                 </div>
             </div>
 
             <div class="timeline-item reveal">
                 <div class="timeline-icon">&#9968;</div>
                 <div class="timeline-content">
-                    <h4>Vail Exploration</h4>
-                    <p>Conquering the vast terrain at Vail and taking in the breathtaking Rocky Mountain views.</p>
+                    <h4>Vail Village Exploration</h4>
+                    <p>Strolling through the charming alpine village, taking family photos, and enjoying the festive holiday atmosphere.</p>
                 </div>
             </div>
 
@@ -1265,7 +1069,7 @@
                 <div class="timeline-icon">&#128150;</div>
                 <div class="timeline-content">
                     <h4>Family Time</h4>
-                    <p>The best part of the trip - quality time together, laughter, and creating lasting memories as a family.</p>
+                    <p>The best part of the trip - quality time together, laughter on the gondola, and creating lasting memories as a family.</p>
                 </div>
             </div>
         </div>
@@ -1283,7 +1087,7 @@
         <div class="social-links">
             <a href="#home" class="social-link">&#127956;</a>
             <a href="#gallery" class="social-link">&#128247;</a>
-            <a href="#highlights" class="social-link">&#128150;</a>
+            <a href="gallery.html" class="social-link">&#128444;</a>
         </div>
 
         <p class="footer-text">Making Memories in the Mountains | December 2024</p>
@@ -1294,7 +1098,6 @@
         function createSnowflakes() {
             const snowflakesContainer = document.getElementById('snowflakes');
             const snowflakeSymbols = ['&#10052;', '&#10053;', '&#10054;', '*'];
-
             for (let i = 0; i < 50; i++) {
                 const snowflake = document.createElement('div');
                 snowflake.className = 'snowflake';
@@ -1307,91 +1110,42 @@
                 snowflakesContainer.appendChild(snowflake);
             }
         }
-
         createSnowflakes();
 
-        // Scroll Reveal Animation
+        // Scroll Reveal
         function reveal() {
             const reveals = document.querySelectorAll('.reveal');
-
             reveals.forEach(element => {
                 const windowHeight = window.innerHeight;
                 const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 150) {
                     element.classList.add('active');
                 }
             });
         }
-
         window.addEventListener('scroll', reveal);
-        reveal(); // Initial check
+        reveal();
 
-        // Smooth scroll for navigation
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Parallax effect for hero section
+        // Parallax
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
             const heroContent = document.querySelector('.hero-content');
-
-            if (hero && scrolled < window.innerHeight) {
+            if (heroContent && scrolled < window.innerHeight) {
                 heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
                 heroContent.style.opacity = 1 - (scrolled / (window.innerHeight * 0.8));
             }
         });
-
-        // Button click effects
-        document.querySelectorAll('.btn-explore').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                ripple.style.cssText = `
-                    position: absolute;
-                    border-radius: 50%;
-                    background: rgba(255,255,255,0.5);
-                    transform: scale(0);
-                    animation: ripple 0.6s linear;
-                    pointer-events: none;
-                `;
-
-                const size = Math.max(rect.width, rect.height);
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
-                ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
-
-                this.style.position = 'relative';
-                this.style.overflow = 'hidden';
-                this.appendChild(ripple);
-
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
-
-        // Add ripple animation keyframes dynamically
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>

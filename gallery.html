@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery | Gober Family Ski Trip 2024</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --snow-white: #f8fafc;
+            --mountain-blue: #1e3a5f;
+            --sky-blue: #87ceeb;
+            --pine-green: #2d5a3d;
+            --sunset-orange: #e07c4c;
+            --golden-hour: #f4a460;
+            --deep-navy: #0f172a;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(180deg, var(--deep-navy) 0%, var(--mountain-blue) 100%);
+            color: var(--snow-white);
+            min-height: 100vh;
+        }
+
+        /* Snowfall */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            text-shadow: 0 0 5px rgba(255,255,255,0.8);
+            animation: fall linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* Header */
+        header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            background: var(--sunset-orange);
+            border-color: var(--sunset-orange);
+            transform: translateY(-50%) translateX(-5px);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--snow-white), var(--sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        /* Gallery Grid */
+        .gallery-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-overlay p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .photo-number {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--sunset-orange);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--sunset-orange);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--sunset-orange);
+        }
+
+        .lightbox-prev { left: -80px; }
+        .lightbox-next { right: -80px; }
+
+        .lightbox-caption {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .lightbox-caption h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .lightbox-caption p {
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, var(--sunset-orange), var(--golden-hour));
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .footer-logo .logo-icon { font-size: 1.5rem; }
+        .footer-logo .logo-text { font-size: 0.6rem; font-weight: 700; }
+
+        footer p {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .back-btn {
+                position: relative;
+                left: 0;
+                top: 0;
+                transform: none;
+                margin-bottom: 1.5rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            .lightbox-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="snowflakes" id="snowflakes"></div>
+
+    <header>
+        <a href="index.html" class="back-btn">
+            <span>&#8592;</span>
+            <span>Back to Home</span>
+        </a>
+        <h1>Complete Photo Gallery</h1>
+        <p>All 17 photos from our Colorado adventure</p>
+    </header>
+
+    <div class="gallery-container">
+        <div class="gallery-grid">
+            <!-- Photo 1 -->
+            <div class="gallery-item" onclick="openLightbox(0)">
+                <span class="photo-number">1</span>
+                <img src="images/photo_01.jpg" alt="Family on the slopes">
+                <div class="gallery-overlay">
+                    <h4>Ready for Adventure</h4>
+                    <p>Family on the ski slopes</p>
+                </div>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="gallery-item" onclick="openLightbox(1)">
+                <span class="photo-number">2</span>
+                <img src="images/photo_02.jpg" alt="Chairlift selfie">
+                <div class="gallery-overlay">
+                    <h4>Chairlift Smiles</h4>
+                    <p>Riding up the mountain</p>
+                </div>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <span class="photo-number">3</span>
+                <img src="images/photo_03.jpg" alt="Brothers at Pioneer">
+                <div class="gallery-overlay">
+                    <h4>The Brothers</h4>
+                    <p>Lunch at Pioneer</p>
+                </div>
+            </div>
+
+            <!-- Photo 4 -->
+            <div class="gallery-item" onclick="openLightbox(3)">
+                <span class="photo-number">4</span>
+                <img src="images/photo_04.jpg" alt="The Range Steamboat">
+                <div class="gallery-overlay">
+                    <h4>The Range</h4>
+                    <p>Steamboat Springs dining</p>
+                </div>
+            </div>
+
+            <!-- Photo 5 -->
+            <div class="gallery-item" onclick="openLightbox(4)">
+                <span class="photo-number">5</span>
+                <img src="images/photo_05.jpg" alt="Learning to snowboard">
+                <div class="gallery-overlay">
+                    <h4>First Time Boarding</h4>
+                    <p>Learning on the bunny slope</p>
+                </div>
+            </div>
+
+            <!-- Photo 6 -->
+            <div class="gallery-item" onclick="openLightbox(5)">
+                <span class="photo-number">6</span>
+                <img src="images/photo_06.jpg" alt="Snowboard sisters">
+                <div class="gallery-overlay">
+                    <h4>Snowboard Sisters</h4>
+                    <p>Ready to shred together</p>
+                </div>
+            </div>
+
+            <!-- Photo 7 -->
+            <div class="gallery-item" onclick="openLightbox(6)">
+                <span class="photo-number">7</span>
+                <img src="images/photo_07.jpg" alt="Magic carpet">
+                <div class="gallery-overlay">
+                    <h4>Magic Carpet Ride</h4>
+                    <p>The beginner conveyor belt</p>
+                </div>
+            </div>
+
+            <!-- Photo 8 -->
+            <div class="gallery-item" onclick="openLightbox(7)">
+                <span class="photo-number">8</span>
+                <img src="images/photo_08.jpg" alt="Vail Village">
+                <div class="gallery-overlay">
+                    <h4>Vail Village</h4>
+                    <p>Exploring the alpine town</p>
+                </div>
+            </div>
+
+            <!-- Photo 9 -->
+            <div class="gallery-item" onclick="openLightbox(8)">
+                <span class="photo-number">9</span>
+                <img src="images/photo_09.jpg" alt="Vail Village together">
+                <div class="gallery-overlay">
+                    <h4>Village Stroll</h4>
+                    <p>Shopping in Vail</p>
+                </div>
+            </div>
+
+            <!-- Photo 10 -->
+            <div class="gallery-item" onclick="openLightbox(9)">
+                <span class="photo-number">10</span>
+                <img src="images/photo_10.jpg" alt="Gondola views">
+                <div class="gallery-overlay">
+                    <h4>Gondola Views</h4>
+                    <p>Mountain scenery from above</p>
+                </div>
+            </div>
+
+            <!-- Photo 11 -->
+            <div class="gallery-item" onclick="openLightbox(10)">
+                <span class="photo-number">11</span>
+                <img src="images/photo_11.jpg" alt="Family gondola">
+                <div class="gallery-overlay">
+                    <h4>Gondola Family</h4>
+                    <p>Riding up together</p>
+                </div>
+            </div>
+
+            <!-- Photo 12 -->
+            <div class="gallery-item" onclick="openLightbox(11)">
+                <span class="photo-number">12</span>
+                <img src="images/photo_12.jpg" alt="Lodge moment">
+                <div class="gallery-overlay">
+                    <h4>Lodge Life</h4>
+                    <p>Warming up inside</p>
+                </div>
+            </div>
+
+            <!-- Photo 13 -->
+            <div class="gallery-item" onclick="openLightbox(12)">
+                <span class="photo-number">13</span>
+                <img src="images/photo_13.jpg" alt="Family in snow">
+                <div class="gallery-overlay">
+                    <h4>Winter Wonderland</h4>
+                    <p>Family in the snowy pines</p>
+                </div>
+            </div>
+
+            <!-- Photo 14 -->
+            <div class="gallery-item" onclick="openLightbox(13)">
+                <span class="photo-number">14</span>
+                <img src="images/photo_14.jpg" alt="Bridge photo">
+                <div class="gallery-overlay">
+                    <h4>By the Creek</h4>
+                    <p>Scenic bridge moment</p>
+                </div>
+            </div>
+
+            <!-- Photo 15 -->
+            <div class="gallery-item" onclick="openLightbox(14)">
+                <span class="photo-number">15</span>
+                <img src="images/photo_15.jpg" alt="Group on bridge">
+                <div class="gallery-overlay">
+                    <h4>Girls Day Out</h4>
+                    <p>Beautiful bridge backdrop</p>
+                </div>
+            </div>
+
+            <!-- Photo 16 -->
+            <div class="gallery-item" onclick="openLightbox(15)">
+                <span class="photo-number">16</span>
+                <img src="images/photo_16.jpg" alt="Holiday playhouse">
+                <div class="gallery-overlay">
+                    <h4>Holiday Spirit</h4>
+                    <p>Festive decorations in Vail</p>
+                </div>
+            </div>
+
+            <!-- Photo 17 -->
+            <div class="gallery-item" onclick="openLightbox(16)">
+                <span class="photo-number">17</span>
+                <img src="images/photo_17.jpg" alt="Highmark dining">
+                <div class="gallery-overlay">
+                    <h4>Highmark Steamboat</h4>
+                    <p>Delicious mountain dining</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="changeSlide(-1)">&#8592;</button>
+            <img src="" alt="" id="lightbox-img">
+            <button class="lightbox-nav lightbox-next" onclick="changeSlide(1)">&#8594;</button>
+            <div class="lightbox-caption">
+                <h4 id="lightbox-title"></h4>
+                <p id="lightbox-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">
+            <span class="logo-icon">&#9978;</span>
+            <span class="logo-text">GOBER</span>
+        </div>
+        <p>Gober Family Ski Trip 2024 | Steamboat Springs & Vail, Colorado</p>
+    </footer>
+
+    <script>
+        // Snowfall
+        function createSnowflakes() {
+            const container = document.getElementById('snowflakes');
+            const symbols = ['&#10052;', '&#10053;', '*'];
+            for (let i = 0; i < 30; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                snowflake.style.animationDelay = Math.random() * 10 + 's';
+                snowflake.style.fontSize = (Math.random() * 8 + 8) + 'px';
+                container.appendChild(snowflake);
+            }
+        }
+        createSnowflakes();
+
+        // Lightbox
+        const photos = [
+            { src: 'images/photo_01.jpg', title: 'Ready for Adventure', desc: 'Family on the ski slopes' },
+            { src: 'images/photo_02.jpg', title: 'Chairlift Smiles', desc: 'Riding up the mountain' },
+            { src: 'images/photo_03.jpg', title: 'The Brothers', desc: 'Lunch at Pioneer' },
+            { src: 'images/photo_04.jpg', title: 'The Range', desc: 'Steamboat Springs dining' },
+            { src: 'images/photo_05.jpg', title: 'First Time Boarding', desc: 'Learning on the bunny slope' },
+            { src: 'images/photo_06.jpg', title: 'Snowboard Sisters', desc: 'Ready to shred together' },
+            { src: 'images/photo_07.jpg', title: 'Magic Carpet Ride', desc: 'The beginner conveyor belt' },
+            { src: 'images/photo_08.jpg', title: 'Vail Village', desc: 'Exploring the alpine town' },
+            { src: 'images/photo_09.jpg', title: 'Village Stroll', desc: 'Shopping in Vail' },
+            { src: 'images/photo_10.jpg', title: 'Gondola Views', desc: 'Mountain scenery from above' },
+            { src: 'images/photo_11.jpg', title: 'Gondola Family', desc: 'Riding up together' },
+            { src: 'images/photo_12.jpg', title: 'Lodge Life', desc: 'Warming up inside' },
+            { src: 'images/photo_13.jpg', title: 'Winter Wonderland', desc: 'Family in the snowy pines' },
+            { src: 'images/photo_14.jpg', title: 'By the Creek', desc: 'Scenic bridge moment' },
+            { src: 'images/photo_15.jpg', title: 'Girls Day Out', desc: 'Beautiful bridge backdrop' },
+            { src: 'images/photo_16.jpg', title: 'Holiday Spirit', desc: 'Festive decorations in Vail' },
+            { src: 'images/photo_17.jpg', title: 'Highmark Steamboat', desc: 'Delicious mountain dining' }
+        ];
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = photos.length - 1;
+            if (currentIndex >= photos.length) currentIndex = 0;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            document.getElementById('lightbox-img').src = photos[currentIndex].src;
+            document.getElementById('lightbox-title').textContent = photos[currentIndex].title;
+            document.getElementById('lightbox-desc').textContent = photos[currentIndex].desc + ' (' + (currentIndex + 1) + ' of ' + photos.length + ')';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Close on background click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+    </script>
+</body>
+</html>
