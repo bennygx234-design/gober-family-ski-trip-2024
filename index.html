@@ -778,6 +778,105 @@
             transform: translateY(0);
         }
 
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            background: rgba(30, 58, 95, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .main-nav.scrolled {
+            padding: 0.5rem 2rem;
+            background: rgba(15, 23, 42, 0.98);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(145deg, var(--sunset-orange), var(--golden-hour));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sunset-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .hero h2 { font-size: 1rem; }
@@ -800,10 +899,51 @@
             .logo-icon { font-size: 2.5rem; }
             .logo-text { font-size: 0.9rem; }
             .mountain-steamboat, .mountain-vail { width: 70%; }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Main Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <a href="#home" class="nav-logo">
+            <div class="nav-logo-icon">&#9978;</div>
+            <span class="nav-logo-text">Gober Family</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#highlights">Highlights</a></li>
+            <li><a href="gallery.html">All Photos</a></li>
+        </ul>
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
     <div class="snowflakes" id="snowflakes"></div>
 
     <!-- Hero Section -->
@@ -931,7 +1071,9 @@
 
         <div class="gallery-container">
             <div class="gallery-grid">
-                <!-- Featured Photo 1 -->
+                <!-- PORTRAIT PHOTOS (1920x2560) - Grouped Together -->
+
+                <!-- Featured Portrait 1 -->
                 <div class="gallery-item featured reveal">
                     <img src="images/photo_13.jpg" alt="Gober Family in Colorado">
                     <div class="gallery-overlay">
@@ -940,7 +1082,7 @@
                     </div>
                 </div>
 
-                <!-- Photo 2 -->
+                <!-- Portrait Photo -->
                 <div class="gallery-item reveal">
                     <img src="images/photo_01.jpg" alt="Family on the slopes">
                     <div class="gallery-overlay">
@@ -949,16 +1091,7 @@
                     </div>
                 </div>
 
-                <!-- Photo 3 -->
-                <div class="gallery-item reveal">
-                    <img src="images/photo_02.jpg" alt="Chairlift selfie">
-                    <div class="gallery-overlay">
-                        <h4>Chairlift Selfie</h4>
-                        <p>Riding up the mountain</p>
-                    </div>
-                </div>
-
-                <!-- Photo 4 -->
+                <!-- Portrait Photo -->
                 <div class="gallery-item reveal">
                     <img src="images/photo_06.jpg" alt="Snowboarding sisters">
                     <div class="gallery-overlay">
@@ -967,34 +1100,7 @@
                     </div>
                 </div>
 
-                <!-- Photo 5 -->
-                <div class="gallery-item reveal">
-                    <img src="images/photo_10.jpg" alt="Gondola ride">
-                    <div class="gallery-overlay">
-                        <h4>Gondola Views</h4>
-                        <p>Taking in the scenery</p>
-                    </div>
-                </div>
-
-                <!-- Featured Photo 2 -->
-                <div class="gallery-item featured reveal">
-                    <img src="images/photo_15.jpg" alt="Family group photo">
-                    <div class="gallery-overlay">
-                        <h4>Winter Wonderland</h4>
-                        <p>Snowy memories by the bridge</p>
-                    </div>
-                </div>
-
-                <!-- Photo 6 -->
-                <div class="gallery-item reveal">
-                    <img src="images/photo_11.jpg" alt="Family in gondola">
-                    <div class="gallery-overlay">
-                        <h4>Gondola Family</h4>
-                        <p>Up, up, and away!</p>
-                    </div>
-                </div>
-
-                <!-- Photo 7 -->
+                <!-- Portrait Photo -->
                 <div class="gallery-item reveal">
                     <img src="images/photo_05.jpg" alt="Snowboarding fun">
                     <div class="gallery-overlay">
@@ -1003,7 +1109,45 @@
                     </div>
                 </div>
 
-                <!-- Photo 8 -->
+                <!-- Featured Portrait 2 -->
+                <div class="gallery-item featured reveal">
+                    <img src="images/photo_15.jpg" alt="Family group photo">
+                    <div class="gallery-overlay">
+                        <h4>Winter Wonderland</h4>
+                        <p>Snowy memories by the bridge</p>
+                    </div>
+                </div>
+
+                <!-- LANDSCAPE PHOTOS (1920x1440) - Grouped Together -->
+
+                <!-- Landscape Photo -->
+                <div class="gallery-item reveal">
+                    <img src="images/photo_02.jpg" alt="Chairlift selfie">
+                    <div class="gallery-overlay">
+                        <h4>Chairlift Selfie</h4>
+                        <p>Riding up the mountain</p>
+                    </div>
+                </div>
+
+                <!-- Landscape Photo -->
+                <div class="gallery-item reveal">
+                    <img src="images/photo_10.jpg" alt="Gondola ride">
+                    <div class="gallery-overlay">
+                        <h4>Gondola Views</h4>
+                        <p>Taking in the scenery</p>
+                    </div>
+                </div>
+
+                <!-- Landscape Photo -->
+                <div class="gallery-item reveal">
+                    <img src="images/photo_11.jpg" alt="Family in gondola">
+                    <div class="gallery-overlay">
+                        <h4>Gondola Family</h4>
+                        <p>Up, up, and away!</p>
+                    </div>
+                </div>
+
+                <!-- Landscape Photo -->
                 <div class="gallery-item reveal">
                     <img src="images/photo_16.jpg" alt="Holiday decorations">
                     <div class="gallery-overlay">
@@ -1188,6 +1332,28 @@
                 heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
                 heroContent.style.opacity = 1 - (scrolled / (window.innerHeight * 0.8));
             }
+
+            // Nav scroll effect
+            const nav = document.getElementById('mainNav');
+            if (scrolled > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile nav when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
         });
     </script>
 </body>

@@ -311,6 +311,107 @@
             font-size: 0.9rem;
         }
 
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            background: rgba(30, 58, 95, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(145deg, var(--sunset-orange), var(--golden-hour));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sunset-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        header {
+            padding-top: 5rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
@@ -325,10 +426,51 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             .lightbox-nav { display: none; }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Main Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">&#9978;</div>
+            <span class="nav-logo-text">Gober Family</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#gallery">Gallery</a></li>
+            <li><a href="index.html#destinations">Destinations</a></li>
+            <li><a href="index.html#highlights">Highlights</a></li>
+            <li><a href="gallery.html" class="active">All Photos</a></li>
+        </ul>
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
     <div class="snowflakes" id="snowflakes"></div>
 
     <header>
@@ -342,7 +484,9 @@
 
     <div class="gallery-container">
         <div class="gallery-grid">
-            <!-- Photo 1 -->
+            <!-- PORTRAIT PHOTOS (1920x2560) - Grouped Together -->
+
+            <!-- Portrait: Photo 1 -->
             <div class="gallery-item" onclick="openLightbox(0)">
                 <span class="photo-number">1</span>
                 <img src="images/photo_01.jpg" alt="Family on the slopes">
@@ -352,39 +496,9 @@
                 </div>
             </div>
 
-            <!-- Photo 2 -->
+            <!-- Portrait: Photo 5 -->
             <div class="gallery-item" onclick="openLightbox(1)">
                 <span class="photo-number">2</span>
-                <img src="images/photo_02.jpg" alt="Chairlift selfie">
-                <div class="gallery-overlay">
-                    <h4>Chairlift Smiles</h4>
-                    <p>Riding up the mountain</p>
-                </div>
-            </div>
-
-            <!-- Photo 3 -->
-            <div class="gallery-item" onclick="openLightbox(2)">
-                <span class="photo-number">3</span>
-                <img src="images/photo_03.jpg" alt="Brothers at Pioneer">
-                <div class="gallery-overlay">
-                    <h4>The Brothers</h4>
-                    <p>Lunch at Pioneer</p>
-                </div>
-            </div>
-
-            <!-- Photo 4 -->
-            <div class="gallery-item" onclick="openLightbox(3)">
-                <span class="photo-number">4</span>
-                <img src="images/photo_04.jpg" alt="The Range Steamboat">
-                <div class="gallery-overlay">
-                    <h4>The Range</h4>
-                    <p>Steamboat Springs dining</p>
-                </div>
-            </div>
-
-            <!-- Photo 5 -->
-            <div class="gallery-item" onclick="openLightbox(4)">
-                <span class="photo-number">5</span>
                 <img src="images/photo_05.jpg" alt="Learning to snowboard">
                 <div class="gallery-overlay">
                     <h4>First Time Boarding</h4>
@@ -392,9 +506,9 @@
                 </div>
             </div>
 
-            <!-- Photo 6 -->
-            <div class="gallery-item" onclick="openLightbox(5)">
-                <span class="photo-number">6</span>
+            <!-- Portrait: Photo 6 -->
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <span class="photo-number">3</span>
                 <img src="images/photo_06.jpg" alt="Snowboard sisters">
                 <div class="gallery-overlay">
                     <h4>Snowboard Sisters</h4>
@@ -402,9 +516,9 @@
                 </div>
             </div>
 
-            <!-- Photo 7 -->
-            <div class="gallery-item" onclick="openLightbox(6)">
-                <span class="photo-number">7</span>
+            <!-- Portrait: Photo 7 -->
+            <div class="gallery-item" onclick="openLightbox(3)">
+                <span class="photo-number">4</span>
                 <img src="images/photo_07.jpg" alt="Magic carpet">
                 <div class="gallery-overlay">
                     <h4>Magic Carpet Ride</h4>
@@ -412,9 +526,9 @@
                 </div>
             </div>
 
-            <!-- Photo 8 -->
-            <div class="gallery-item" onclick="openLightbox(7)">
-                <span class="photo-number">8</span>
+            <!-- Portrait: Photo 8 -->
+            <div class="gallery-item" onclick="openLightbox(4)">
+                <span class="photo-number">5</span>
                 <img src="images/photo_08.jpg" alt="Vail Village">
                 <div class="gallery-overlay">
                     <h4>Vail Village</h4>
@@ -422,9 +536,9 @@
                 </div>
             </div>
 
-            <!-- Photo 9 -->
-            <div class="gallery-item" onclick="openLightbox(8)">
-                <span class="photo-number">9</span>
+            <!-- Portrait: Photo 9 -->
+            <div class="gallery-item" onclick="openLightbox(5)">
+                <span class="photo-number">6</span>
                 <img src="images/photo_09.jpg" alt="Vail Village together">
                 <div class="gallery-overlay">
                     <h4>Village Stroll</h4>
@@ -432,29 +546,9 @@
                 </div>
             </div>
 
-            <!-- Photo 10 -->
-            <div class="gallery-item" onclick="openLightbox(9)">
-                <span class="photo-number">10</span>
-                <img src="images/photo_10.jpg" alt="Gondola views">
-                <div class="gallery-overlay">
-                    <h4>Gondola Views</h4>
-                    <p>Mountain scenery from above</p>
-                </div>
-            </div>
-
-            <!-- Photo 11 -->
-            <div class="gallery-item" onclick="openLightbox(10)">
-                <span class="photo-number">11</span>
-                <img src="images/photo_11.jpg" alt="Family gondola">
-                <div class="gallery-overlay">
-                    <h4>Gondola Family</h4>
-                    <p>Riding up together</p>
-                </div>
-            </div>
-
-            <!-- Photo 12 -->
-            <div class="gallery-item" onclick="openLightbox(11)">
-                <span class="photo-number">12</span>
+            <!-- Portrait: Photo 12 -->
+            <div class="gallery-item" onclick="openLightbox(6)">
+                <span class="photo-number">7</span>
                 <img src="images/photo_12.jpg" alt="Lodge moment">
                 <div class="gallery-overlay">
                     <h4>Lodge Life</h4>
@@ -462,9 +556,9 @@
                 </div>
             </div>
 
-            <!-- Photo 13 -->
-            <div class="gallery-item" onclick="openLightbox(12)">
-                <span class="photo-number">13</span>
+            <!-- Portrait: Photo 13 -->
+            <div class="gallery-item" onclick="openLightbox(7)">
+                <span class="photo-number">8</span>
                 <img src="images/photo_13.jpg" alt="Family in snow">
                 <div class="gallery-overlay">
                     <h4>Winter Wonderland</h4>
@@ -472,19 +566,9 @@
                 </div>
             </div>
 
-            <!-- Photo 14 -->
-            <div class="gallery-item" onclick="openLightbox(13)">
-                <span class="photo-number">14</span>
-                <img src="images/photo_14.jpg" alt="Bridge photo">
-                <div class="gallery-overlay">
-                    <h4>By the Creek</h4>
-                    <p>Scenic bridge moment</p>
-                </div>
-            </div>
-
-            <!-- Photo 15 -->
-            <div class="gallery-item" onclick="openLightbox(14)">
-                <span class="photo-number">15</span>
+            <!-- Portrait: Photo 15 -->
+            <div class="gallery-item" onclick="openLightbox(8)">
+                <span class="photo-number">9</span>
                 <img src="images/photo_15.jpg" alt="Group on bridge">
                 <div class="gallery-overlay">
                     <h4>Girls Day Out</h4>
@@ -492,7 +576,69 @@
                 </div>
             </div>
 
-            <!-- Photo 16 -->
+            <!-- LANDSCAPE PHOTOS (1920x1440) - Grouped Together -->
+
+            <!-- Landscape: Photo 2 -->
+            <div class="gallery-item" onclick="openLightbox(9)">
+                <span class="photo-number">10</span>
+                <img src="images/photo_02.jpg" alt="Chairlift selfie">
+                <div class="gallery-overlay">
+                    <h4>Chairlift Smiles</h4>
+                    <p>Riding up the mountain</p>
+                </div>
+            </div>
+
+            <!-- Landscape: Photo 3 -->
+            <div class="gallery-item" onclick="openLightbox(10)">
+                <span class="photo-number">11</span>
+                <img src="images/photo_03.jpg" alt="Brothers at Pioneer">
+                <div class="gallery-overlay">
+                    <h4>The Brothers</h4>
+                    <p>Lunch at Pioneer</p>
+                </div>
+            </div>
+
+            <!-- Landscape: Photo 4 -->
+            <div class="gallery-item" onclick="openLightbox(11)">
+                <span class="photo-number">12</span>
+                <img src="images/photo_04.jpg" alt="The Range Steamboat">
+                <div class="gallery-overlay">
+                    <h4>The Range</h4>
+                    <p>Steamboat Springs dining</p>
+                </div>
+            </div>
+
+            <!-- Landscape: Photo 10 -->
+            <div class="gallery-item" onclick="openLightbox(12)">
+                <span class="photo-number">13</span>
+                <img src="images/photo_10.jpg" alt="Gondola views">
+                <div class="gallery-overlay">
+                    <h4>Gondola Views</h4>
+                    <p>Mountain scenery from above</p>
+                </div>
+            </div>
+
+            <!-- Landscape: Photo 11 -->
+            <div class="gallery-item" onclick="openLightbox(13)">
+                <span class="photo-number">14</span>
+                <img src="images/photo_11.jpg" alt="Family gondola">
+                <div class="gallery-overlay">
+                    <h4>Gondola Family</h4>
+                    <p>Riding up together</p>
+                </div>
+            </div>
+
+            <!-- Landscape: Photo 14 -->
+            <div class="gallery-item" onclick="openLightbox(14)">
+                <span class="photo-number">15</span>
+                <img src="images/photo_14.jpg" alt="Bridge photo">
+                <div class="gallery-overlay">
+                    <h4>By the Creek</h4>
+                    <p>Scenic bridge moment</p>
+                </div>
+            </div>
+
+            <!-- Landscape: Photo 16 -->
             <div class="gallery-item" onclick="openLightbox(15)">
                 <span class="photo-number">16</span>
                 <img src="images/photo_16.jpg" alt="Holiday playhouse">
@@ -502,7 +648,7 @@
                 </div>
             </div>
 
-            <!-- Photo 17 -->
+            <!-- Landscape: Photo 17 -->
             <div class="gallery-item" onclick="openLightbox(16)">
                 <span class="photo-number">17</span>
                 <img src="images/photo_17.jpg" alt="Highmark dining">
@@ -554,23 +700,25 @@
         }
         createSnowflakes();
 
-        // Lightbox
+        // Lightbox - Photos ordered by aspect ratio (portraits first, then landscapes)
         const photos = [
+            // Portrait photos (1920x2560)
             { src: 'images/photo_01.jpg', title: 'Ready for Adventure', desc: 'Family on the ski slopes' },
-            { src: 'images/photo_02.jpg', title: 'Chairlift Smiles', desc: 'Riding up the mountain' },
-            { src: 'images/photo_03.jpg', title: 'The Brothers', desc: 'Lunch at Pioneer' },
-            { src: 'images/photo_04.jpg', title: 'The Range', desc: 'Steamboat Springs dining' },
             { src: 'images/photo_05.jpg', title: 'First Time Boarding', desc: 'Learning on the bunny slope' },
             { src: 'images/photo_06.jpg', title: 'Snowboard Sisters', desc: 'Ready to shred together' },
             { src: 'images/photo_07.jpg', title: 'Magic Carpet Ride', desc: 'The beginner conveyor belt' },
             { src: 'images/photo_08.jpg', title: 'Vail Village', desc: 'Exploring the alpine town' },
             { src: 'images/photo_09.jpg', title: 'Village Stroll', desc: 'Shopping in Vail' },
-            { src: 'images/photo_10.jpg', title: 'Gondola Views', desc: 'Mountain scenery from above' },
-            { src: 'images/photo_11.jpg', title: 'Gondola Family', desc: 'Riding up together' },
             { src: 'images/photo_12.jpg', title: 'Lodge Life', desc: 'Warming up inside' },
             { src: 'images/photo_13.jpg', title: 'Winter Wonderland', desc: 'Family in the snowy pines' },
-            { src: 'images/photo_14.jpg', title: 'By the Creek', desc: 'Scenic bridge moment' },
             { src: 'images/photo_15.jpg', title: 'Girls Day Out', desc: 'Beautiful bridge backdrop' },
+            // Landscape photos (1920x1440)
+            { src: 'images/photo_02.jpg', title: 'Chairlift Smiles', desc: 'Riding up the mountain' },
+            { src: 'images/photo_03.jpg', title: 'The Brothers', desc: 'Lunch at Pioneer' },
+            { src: 'images/photo_04.jpg', title: 'The Range', desc: 'Steamboat Springs dining' },
+            { src: 'images/photo_10.jpg', title: 'Gondola Views', desc: 'Mountain scenery from above' },
+            { src: 'images/photo_11.jpg', title: 'Gondola Family', desc: 'Riding up together' },
+            { src: 'images/photo_14.jpg', title: 'By the Creek', desc: 'Scenic bridge moment' },
             { src: 'images/photo_16.jpg', title: 'Holiday Spirit', desc: 'Festive decorations in Vail' },
             { src: 'images/photo_17.jpg', title: 'Highmark Steamboat', desc: 'Delicious mountain dining' }
         ];
@@ -613,6 +761,13 @@
         // Close on background click
         document.getElementById('lightbox').addEventListener('click', (e) => {
             if (e.target.id === 'lightbox') closeLightbox();
+        });
+
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
     </script>
 </body>
